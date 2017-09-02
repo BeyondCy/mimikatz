@@ -1,0 +1,23 @@
+platform:
+  - x86
+  - x64
+
+configuration:
+  - Release
+  - Debug
+
+environment:
+  matrix:
+    - VSVER: 14
+    - VSVER: 12
+
+build_script:
+  - msbuild "mimikatz/mimikatz.vcxproj" /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+  - msbuild "mimilove/mimilove.vcxproj" /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+
+artifacts:
+  - path: Win32/mimikatz.exe
+    name: mimikatz
+
+  - path: Win32\mimilove.exe
+    name: mimilove
